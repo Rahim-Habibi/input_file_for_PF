@@ -634,10 +634,24 @@ produce_time = 1728000
     order = CONSTANT
     family = MONOMIAL
   []
+#########################
+[./p0]
+    family = LAGRANGE
+    order = FIRST
+  [../]
+#########################
 []
 
 [AuxKernels]
-  [temp_ref]
+#########################  
+[./p0_kernel]
+    type = FunctionAux
+    variable = 'p0'
+    function = '-(1000*9.81*(z - 1000))'
+    execute_on = 'initial'
+  [../]  
+##########################
+[temp_ref]
     type = FunctionAux
     function = 'temp_func'
     variable = temp_ref
